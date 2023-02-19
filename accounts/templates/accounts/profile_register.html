@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    صفحه ثبت نام
+{% endblock %}
+
+{% block titlepage %}
+    فرم ثبت نام
+{% endblock%}
+
+{% block mainContent %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mainborder">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mylable">Name: {{ form_data.first_name }}</p>
+                    <p class="mylable">Family: {{ form_data.last_name }}</p>
+                    <p class="mylable">Gender: {{ form_data.gender }}</p>
+                    <p class="mylable">Credit: {{ form_data.credit }}</p>
+
+
+                </div>
+                <div  class="col-md-6">
+                    <p class="mylable">Email: {{ form_data.email }}</p>
+                    <p class="mylable">UserName: {{ form_data.username }}</p>
+                    <p class="mylable">Password: {{ form_data.password }}</p>
+                    {{ form_data.profile_pic }}
+                </div>
+            </div>
+        </div>
+        <div class="bottonborder">
+            <button type="submit" class="btn btn-success">ثبت نام</button>
+        </div>
+    </form>
+{% endblock%}

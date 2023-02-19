@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    صفحه ویرایش پروفایل
+{% endblock %}
+
+{% block titlepage %}
+    ویرایش پروفایل
+{% endblock %}
+
+{% block mainContent %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mainborder">
+            <div class="row">
+                <div class="col-md-10">
+                    <div>
+                        <p class="border"><span class="title">نام: </span>{{ user_edit_form.first_name }}  </p>
+                        <p class="border"><span class="title"> نام خانوادگی: </span> {{ user_edit_form.last_name }} </p>
+                        <p class="border"><span class="title">ایمیل: </span> {{ user_edit_form.email }} </p>
+                        <p class="border"><span class="title">جنسیت: </span> {{ profile_edit_form.gender }}</p>
+                        <p class="border"><span class="title">مقدار اعتبار: </span> {{ profile_edit_form.credit }}</p>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="imageBox">
+                        <img src="{{ profile_pic.url }}">
+                    </div>
+                    {{ profile_edit_form.profile_pic }}
+                </div>
+            </div>
+            <div class="bottonborder">
+                <button type="submit" class="btn btn-success">ذخیره</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

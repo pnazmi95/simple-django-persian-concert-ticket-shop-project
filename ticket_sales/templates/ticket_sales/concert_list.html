@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    لیست کنسرت ها
+{% endblock %}
+
+{% block titlepage %}
+    لیست کنسرت ها
+{% endblock %}
+
+{% block mainContent %}
+
+    {% if concert_list %}
+        <form action="" method="GET" class="m-3">
+            {{ search_form }}
+            <button type="submit" class="btn btn-success">جستجو</button>
+        </form>
+        {% for concert in concert_list %}
+            <div class="col-md-2 card bg-dark text-light m-3 p-2">
+                <a href="{% url 'ticket_sales:concert_detail_view' concert_id=concert.id %}">
+                    <img src="{{ concert.poster.url }}" class="card-img-top" alt="concert-poster">
+                </a>
+                <div class="card-body text-center">
+                    <p class="card-title mb-3" style="font-weight: bolder; font-size: large">
+                        {{ concert }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock %}
+
+

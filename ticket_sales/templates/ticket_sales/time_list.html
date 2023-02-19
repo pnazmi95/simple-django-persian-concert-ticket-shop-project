@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    سانس ها
+{% endblock %}
+
+{% block titlepage %}
+    لیست سانس ها
+{% endblock %}
+
+{% block mainContent %}
+    {% if time_list %}
+        {% for time in time_list %}
+            <div class="col-md-3">
+                <a>
+                    <div class="timeBox">
+                        <h2> {{ time.concert.name }}</h2>
+                        <p>{{ time.concert.singer_name }}</p>
+                        <p>{{ time.location.name }}</p>
+                        <p>{{ time.get_jalali_date_time }}</p>
+                        <div
+
+                                class="
+
+                        {% if time.status == time.start %}
+                            btn btn-success
+
+                        {% elif  time.status == time.end %}
+                            btn btn-danger
+
+                         {% elif  time.status == time.canceled %}
+                            btn default
+
+                        {% elif  time.status == time.on_sale %}
+                            btn btn-primary
+
+                        {% endif %}
+
+                        ">
+                            {{ time.get_status_display }}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.rtl.css' %} ">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.css' %} ">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %} ">
+
+    <style>
+        @font-face {
+            font-family: 'IranSanse';
+            src: local('IranSanse'),
+            url('{% static "fonts/eot/IRANSansWeb.eot" %}') format('eot'),
+            url('{% static "fonts/ttf/IRANSansWeb.ttf" %}') format('ttf'),
+            url('{% static "fonts/woff/IRANSansWeb.woff" %}') format('woff'),
+            url('{% static "fonts/woff2/IRANSansWeb.woff2" %}') format('woff2');
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container container-color">
+        <div class="row box">
+
+            <h1 class="mb-5">{% block titlepage %} {% endblock %}</h1>
+            <ul class="btnul">
+
+                {% if user.is_authenticated %}
+                    <li><a class="btn btn-success" href="{% url 'accounts:profile' %}">پروفایل</a></li>
+                    <li><a class="btn btn-danger" href="{% url 'accounts:logout' %}">خروج</a></li>
+
+                {% else %}
+                    <li><a class="btn btn-success" href="{% url 'accounts:login' %}">ورود</a></li>
+                    <li><a class="btn btn-danger" href="{% url 'accounts:register' %}">ثبت نام</a></li>
+                {% endif %}
+
+
+
+                <li><a class="btn btn-primary" href="{% url 'ticket_sales:time_view' %}"> مشاهده سانس های کنسرت</a></li>
+                <li><a class="btn default" href="{% url 'ticket_sales:concert_list_view' %}">صفحه اصلی</a></li>
+                <li><a class="btn btn-danger" href="{% url 'ticket_sales:location_list_view' %}">اطلاعات محل</a></li>
+            </ul>
+        </div>
+
+        <div class="row">
+
+            {% block mainContent %}{% endblock %}
+
+        </div>
+    </div>
+
+</body>
+
+<script src="{% static 'js/jquery-3.6.1.slim.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/fontawesome.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</html>
+
+
